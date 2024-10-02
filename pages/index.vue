@@ -1,13 +1,17 @@
 <template>
     <div>
         <div>
-            <h1>header</h1>
+            <h1>Quiz With llama3.2</h1>
             <input type="text" v-model="topic" placeholder="Quiz Topic">
             <button @click="generateQuiz">Generate Quiz</button>
         </div>
         
-        <div>
-            <pre v-if="quizData">{{ quizData }}</pre>
+        <p v-if="quizData==null">Prompting...</p>
+        <div id="questionDiv" v-if="quizData">
+            <div>
+                {{ quizData[0].question }}
+                <input>
+            </div>
         </div>
         
     </div>
@@ -20,13 +24,14 @@
         data() {
             return {
                 topic: null,
-                quizData: null,
+                quizData: "",
                 
             };
         },
         methods: {
             generateQuiz(){
-                const response = generateQuestions(this.topic).then(response => this.quizData = JSON.parse(response))
+                this.quizData = null;
+                generateQuestions(this.topic).then(response => this.quizData = JSON.parse(response))
             }
         }
     }

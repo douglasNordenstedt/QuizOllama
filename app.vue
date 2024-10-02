@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Navbar />
     <NuxtPage/>
   </div>
 </template>
@@ -12,6 +13,9 @@ export default {
 </script>
 
 <style>
+body{
+  background-color: rgb(221, 221, 221)
+}
 #app {
   font-family: 'Arial', sans-serif;
   margin: 0;

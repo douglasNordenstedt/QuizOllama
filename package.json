@@ -14,5 +14,8 @@
     "ollama": "^0.5.9",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1"
   }
 }
