@@ -1,24 +1,24 @@
 <template>
   <div id="app">
     <Navbar />
-    <NuxtPage/>
+    <NuxtPage class="p-2"/>
   </div>
 </template>
 
 <script>
 
-export default {
-  // Root component, no need for special configuration
-};
+  export default defineComponent({
+   
+  });
 </script>
 
 <style>
 body{
-  background-color: rgb(221, 221, 221)
-}
-#app {
+  background-color: rgb(221, 221, 221);
   font-family: 'Arial', sans-serif;
+  font-size: large;
   margin: 0;
   padding: 0;
 }
+
 </style>
