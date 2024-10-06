@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar />
-    <NuxtPage class="p-2"/>
+    <Navbar class="pl-2 bg-myTwo text-myFour text-2xl" />
+    <NuxtPage class="p-8 pl-10 bg-myOne" />
   </div>
 </template>
 
@@ -14,11 +14,9 @@
 
 <style>
 body{
-  background-color: rgb(221, 221, 221);
-  font-family: 'Arial', sans-serif;
-  font-size: large;
-  margin: 0;
-  padding: 0;
+  font-family:  Chakra Petch, Roboto, sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+  color: #ffffff;
 }
-
 </style>
