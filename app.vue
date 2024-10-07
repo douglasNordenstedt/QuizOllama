@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
-    <Navbar class="pl-2 bg-myTwo text-myFour text-2xl" />
-    <NuxtPage class="p-8 pl-10 bg-myOne" />
+  <div id="app" class="min-h-screen flex flex-col">
+    <Navbar class="pt-4 pb-2 pr-8 bg-myTwo text-myFour text-2xl lg:pl-40" />
+    <NuxtPage class="flex-grow pr-40 bg-myOne lg:pl-40" />
+    <Footer />
   </div>
 </template>
 
@@ -17,6 +18,6 @@ body{
   font-family:  Chakra Petch, Roboto, sans-serif;
   font-weight: bolder;
   font-size: 20px;
-  color: #ffffff;
+  color: #EEEEEE;
 }
 </style>
