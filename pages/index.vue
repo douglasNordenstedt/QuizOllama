@@ -1,5 +1,5 @@
 <template>
-    <div class="p-2">
+    <div class="p-4">
 
         <div v-if="page==='home'">
 
@@ -8,15 +8,6 @@
                 <div class="pt-12 flex flex-col sm:flex-row items-start">
                     <input type="text" v-model="topic" placeholder="Enter Topic" class="p-1 text-black rounded-xl mb-5">
                     <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl" @click="generateQuiz">Generate Quiz</button>
-                </div>
-            </div>
-            
-            <p v-if="quizData==null">Prompting...</p>
-
-            <div id="questionDiv" v-if="quizData">
-                <div>
-                    {{ quizData[0].question }}
-                    <input>
                 </div>
             </div>
             
@@ -34,14 +25,19 @@
             <icon name="svg-spinners:blocks-shuffle-3" style="color: #00ADB5" size="60px"/>
         </div>
 
-
+        <div v-if="page==='questions'">
+            <div>
+                <div>
+                    <h2>{{ quizData[0].question }}</h2>
+                    <input type="text" v-model="topic" placeholder="Enter Topic" class="p-1 text-black rounded-xl mb-5">
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
 
 <script>
-
-    import { generateQuestions } from "~/components/generateQuestions.js";
 
     export default{
         data() {
@@ -53,11 +49,25 @@
             };
         },
         methods: {
-            generateQuiz(){
+                async generateQuiz() {
                 this.quizData = null;
-                this.page="loading";
-                generateQuestions(this.topic).then(response => this.quizData = JSON.parse(response))
-            }
+                this.page = "loading";
+                
+                try {
+                    // Make an API call to the server-side route
+                    const response = await fetch(`/api/generateQuestions?topic=${this.topic}`);
+                    if (!response.ok) {
+                        throw new Error('Failed to generate questions');
+                    }
+                    const data = await response.json();
+                    this.quizData = data;
+                } catch (error) {
+                    console.error(error);
+                    this.quizData = null;
+                } finally {
+                    this.page = "questions";
+                }
+                }
         }
     }
 </script>
