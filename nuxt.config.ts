@@ -7,4 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/fonts',
   ],
+  devServer: {
+    host: '127.0.0.1'
+  },
 })
