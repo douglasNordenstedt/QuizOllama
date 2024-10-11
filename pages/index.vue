@@ -7,7 +7,7 @@
                     <h1 class="text-6xl italic text-myFour pt-10">Quiz Yourself With llama3.2</h1>
                     <div class="pt-12 flex flex-col sm:flex-row items-start">
                         <input type="text" v-model="topic" placeholder="Enter Topic" class="p-1 text-black rounded-xl mb-5">
-                        <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl" @click="generateQuiz">Generate Quiz</button>
+                        <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="generateQuiz">Generate Quiz</button>
                     </div>
                 </div>
                 
@@ -22,32 +22,41 @@
 
             <div>
                 <div>
-                    <img src="/ollama.svg" alt="SVG" class="opacity-40 pt-20 xl:pl-20 pb-20 xl:pb-auto" />
+                    <img src="/ollama.svg" alt="SVG" class="opacity-40 xl:pl-20 pb-20 xl:pb-auto" style="padding-top:10%;" />
                 </div>
             </div>
         </div>
 
-        <div v-if="page==='loading'" class="flex justify-center items-center">
-            <icon name="svg-spinners:blocks-shuffle-3" style="color: #00ADB5" size="60px"/>
+        <div v-if="page==='loading'" class="flex justify-center items-center flex-col">
+            <icon name="svg-spinners:blocks-shuffle-3" style="color: #00ADB5;" size="400%"/>
+            <div class="text-myThree pt-5">
+                <p>Prompting...</p>
+            </div>
         </div>
 
         <div v-if="page==='questions'">
             <div>
                 <div>
                     <h2>{{ quizData[0].question }}</h2>
-                    <input type="text" placeholder="" class="p-1 text-black rounded-xl mb-5">
+                    <input type="text" v-model="answerOne" placeholder="" class="p-1 text-black rounded-xl mb-5">
                 </div>
                 <div>
                     <h2>{{ quizData[1].question }}</h2>
-                    <input type="text" placeholder="" class="p-1 text-black rounded-xl mb-5">
+                    <input type="text" v-model="answerTwo" placeholder="" class="p-1 text-black rounded-xl mb-5">
                 </div>
                 <div>
                     <h2>{{ quizData[2].question }}</h2>
-                    <input type="text" placeholder="" class="p-1 text-black rounded-xl mb-5">
+                    <input type="text" v-model="answerThree" placeholder="" class="p-1 text-black rounded-xl mb-5">
                 </div>
+            </div>
+            <div>
+                <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="gradeQuiz">Grade Quiz</button>
             </div>
         </div>
 
+        <div v-if="page==='results'">
+            <pre>{{ reprove }}</pre>
+        </div>
     </div>
 </template>
 
@@ -59,11 +68,14 @@
                 page: "home",
                 topic: null,
                 quizData: "",
-                
+                answerOne: null,
+                answerTwo: null,
+                answerThree: null,
+                reprove: "",                
             };
         },
         methods: {
-                async generateQuiz() {
+            async generateQuiz() {
                 this.quizData = null;
                 this.page = "loading";
                 
@@ -81,7 +93,25 @@
                 } finally {
                     this.page = "questions";
                 }
+            },
+            async gradeQuiz() {
+                this.page = "loading";
+                
+                try {
+                    const response = await fetch (`api/gradeQuestions?topic=pineapple&answers=${this.answerOne, this.answerTwo, this.answerThree}&questions=${this.quizData[0].question, this.quizData[1].question, this.quizData[0].question}`)
+                    if (!response.ok) {
+                        throw new Error('Failed to grade questions');
+                    }
+                    const data = await response.json();
+                    this.reprove = data;
+                } catch(error) {
+                    console.error(error);
+                    this.reprove = null;
+                } finally {
+                    this.page = "results";
+                }
                 }
         }
+
     }
 </script>
