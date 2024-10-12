@@ -100,9 +100,19 @@
             },
             async gradeQuiz() {
                 this.page = "loading";
-                
+
+                let params = new URLSearchParams({
+                    questionOne: this.quizData[0].question,
+                    questionTwo: this.quizData[1].question,
+                    questionThree: this.quizData[2].question,
+                    answerOne: this.answerOne,
+                    answerTwo: this.answerTwo,
+                    answerThree: this.answerThree
+                });
+
+                console.log(`api/gradeQuestions?${params.toString()}`)
                 try {
-                    const response = await fetch (`api/gradeQuestions?topic=pineapple&answers=${this.answerOne, this.answerTwo, this.answerThree}&questions=${this.quizData[0].question, this.quizData[1].question, this.quizData[0].question}`)
+                    const response = await fetch (`api/gradeQuestions?${params.toString()}`)
                     if (!response.ok) {
                         throw new Error('Failed to grade questions');
                     }
