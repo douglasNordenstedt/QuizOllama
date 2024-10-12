@@ -1,0 +1,100 @@
+.cls-1 {
+    fill: #00ADB5; /* Blue */
+    animation: cls1 4s ease infinite both;
+  }
+  
+  @keyframes cls1 {
+    0% {
+      fill: #00ADB5; /* Blue */
+    }
+  
+    34% {
+      fill: #007F7F; /* Darker Turquoise */
+    }
+  
+    66% {
+      fill: #00FFFF; /* Bright Cyan */
+    }
+  
+    100% {
+      fill: #00ADB5; /* Blue */
+    }
+  }
+  
+  .cls-1,
+  .cls-2,
+  .cls-3 {
+    stroke-width: 0px;
+  }
+  
+  .cls-2 {
+    fill: #00FFFF; /* Bright Cyan */
+    animation: cls2 4s ease infinite both;
+  }
+  
+  @keyframes cls2 {
+    0% {
+      fill: #00FFFF; /* Bright Cyan */
+    }
+  
+    34% {
+      fill: #00ADB5; /* Blue */
+    }
+  
+    66% {
+      fill: #007F7F; /* Darker Turquoise */
+    }
+  
+    100% {
+      fill: #00FFFF; /* Bright Cyan */
+    }
+  }
+  
+  .cls-3 {
+    fill: #007F7F; /* Darker Turquoise */
+    animation: cls3 4s ease infinite both;
+  }
+  
+  @keyframes cls3 {
+    0% {
+      fill: #007F7F; /* Darker Turquoise */
+    }
+  
+    34% {
+      fill: #00FFFF; /* Bright Cyan */
+    }
+  
+    66% {
+      fill: #00ADB5; /* Blue */
+    }
+  
+    100% {
+      fill: #007F7F; /* Darker Turquoise */
+    }
+  }
+  
+  .cls-4 {
+    display: none;
+  }
+  
+  #triangle {
+    height: 400px;
+    width: 400px;
+    padding-top: 30px;
+    animation: triangle 4s both infinite;
+  }
+  
+  @keyframes triangle {
+    0% {
+      transform: translateY(0px);
+    }
+  
+    50% {
+      transform: translateY(15px);
+    }
+  
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  

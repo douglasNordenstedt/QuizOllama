@@ -16,6 +16,8 @@
                     <ul class="pl-4">
                         <li>- Choose your own topic and generate a unique quiz</li>
                         <li>- Your answers will be graded and compared to how the AI answered</li>
+                        <li>- Quality of questions might decline along with more niche topics</li>
+                        <li>- Topics including profanity will be rejected</li>
                     </ul>
                 </div>
             </div>
@@ -28,9 +30,11 @@
         </div>
 
         <div v-if="page==='loading'" class="flex justify-center items-center flex-col">
-            <icon name="svg-spinners:blocks-shuffle-3" style="color: #00ADB5;" size="400%"/>
-            <div class="text-myThree pt-5">
-                <p>Prompting...</p>
+            <!--<icon name="svg-spinners:blocks-shuffle-3" style="color: #00ADB5;" size="400%"/>-->
+            
+            <iframe src="/loading.html" width="400px" height="400px" frameborder="none" scrolling="no" class="mr-5"></iframe>
+            <div class="text-myThree pt-5 mx-auto text-3xl italic">
+                <p>Prompting</p>
             </div>
         </div>
 

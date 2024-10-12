@@ -79,5 +79,5 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 ## Features
 &check; Single page application ⚡\
 &check; Responsive design 📱\
-&check; Nuxt3 ⛰️\
-&check; Tailwind css 🌊
+&check; Nuxt3 🌿\
+&check; Tailwind css 🌊\
