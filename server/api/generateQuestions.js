@@ -18,6 +18,7 @@ export const generateQuestions = (topic) => {
     Generate 3 short questions regarding the topic "${topic}".
     The questions should always have an answer.
     Answer in raw JSON ONLY.
+    The response must be completely valid JSON. It will be parsed.
     The format of the json will always be exactly [{"question":"","answer":""},{"question":"","answer":""},{"question":"","answer":""}].
     Don't forget the commas in between the curly brackets.
     A question should always end with a question mark.

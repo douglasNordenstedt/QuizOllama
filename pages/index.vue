@@ -6,8 +6,8 @@
                 <div>
                     <h1 class="text-6xl italic text-myFour pt-10">Quiz Yourself With llama3.2</h1>
                     <div class="pt-12 flex flex-col sm:flex-row items-start">
-                        <input type="text" v-model="topic" placeholder="Enter Topic" class="p-1 text-black rounded-xl mb-5">
-                        <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="generateQuiz">Generate Quiz</button>
+                        <input type="text" v-model="topic" placeholder="Enter Topic" class="p-1 text-black rounded-xl mb-5" @keyup.enter="generateQuiz">
+                        <button class="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="generateQuiz">Generate Quiz</button>
                     </div>
                 </div>
                 
@@ -39,26 +39,33 @@
         </div>
 
         <div v-if="page==='questions'">
-            <div>
-                <div>
-                    <h2>{{ quizData[0].question }}</h2>
+            <div class="flex flex-col items-center min-h-screen">
+                <div class="flex flex-col items-center text-6xl text-myThree pt-10 pb-10 italic">
+                    <h1>{{ this.topic }} Quiz</h1>
+                </div>
+                <div class="flex flex-col items-center">
+                    <h2 class="mb-3">{{ quizData[0].question }}</h2>
                     <input type="text" v-model="answerOne" placeholder="" class="p-1 text-black rounded-xl mb-5">
                 </div>
-                <div>
-                    <h2>{{ quizData[1].question }}</h2>
+                <div class="flex flex-col items-center">
+                    <h2 class="mb-3">{{ quizData[1].question }}</h2>
                     <input type="text" v-model="answerTwo" placeholder="" class="p-1 text-black rounded-xl mb-5">
                 </div>
-                <div>
-                    <h2>{{ quizData[2].question }}</h2>
+                <div class="flex flex-col items-center">
+                    <h2 class="mb-3">{{ quizData[2].question }}</h2>
                     <input type="text" v-model="answerThree" placeholder="" class="p-1 text-black rounded-xl mb-5">
                 </div>
-            </div>
-            <div>
+                <div class="flex flex-col items-center">
                 <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="gradeQuiz">Grade Quiz</button>
+                </div>
             </div>
+            
         </div>
 
         <div v-if="page==='results'">
+            <div>
+
+            </div>
             <pre>{{ reprove }}</pre>
         </div>
     </div>

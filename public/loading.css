@@ -1,23 +1,23 @@
 .cls-1 {
-    fill: #00ADB5; /* Blue */
+    fill: #00ADB5;
     animation: cls1 4s ease infinite both;
   }
   
   @keyframes cls1 {
     0% {
-      fill: #00ADB5; /* Blue */
+      fill: #00ADB5;
     }
   
     34% {
-      fill: #007F7F; /* Darker Turquoise */
+      fill: #007F7F;
     }
   
     66% {
-      fill: #00FFFF; /* Bright Cyan */
+      fill: #00FFFF;
     }
   
     100% {
-      fill: #00ADB5; /* Blue */
+      fill: #00ADB5;
     }
   }
   
@@ -28,48 +28,48 @@
   }
   
   .cls-2 {
-    fill: #00FFFF; /* Bright Cyan */
+    fill: #00FFFF; 
     animation: cls2 4s ease infinite both;
   }
   
   @keyframes cls2 {
     0% {
-      fill: #00FFFF; /* Bright Cyan */
+      fill: #00FFFF; 
     }
   
     34% {
-      fill: #00ADB5; /* Blue */
+      fill: #00ADB5; 
     }
   
     66% {
-      fill: #007F7F; /* Darker Turquoise */
+      fill: #007F7F; 
     }
   
     100% {
-      fill: #00FFFF; /* Bright Cyan */
+      fill: #00FFFF; 
     }
   }
   
   .cls-3 {
-    fill: #007F7F; /* Darker Turquoise */
+    fill: #007F7F; 
     animation: cls3 4s ease infinite both;
   }
   
   @keyframes cls3 {
     0% {
-      fill: #007F7F; /* Darker Turquoise */
+      fill: #007F7F; 
     }
   
     34% {
-      fill: #00FFFF; /* Bright Cyan */
+      fill: #00FFFF; 
     }
   
     66% {
-      fill: #00ADB5; /* Blue */
+      fill: #00ADB5; 
     }
   
     100% {
-      fill: #007F7F; /* Darker Turquoise */
+      fill: #007F7F; 
     }
   }
   
