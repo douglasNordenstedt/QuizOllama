@@ -59,14 +59,49 @@
                 <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="gradeQuiz">Grade Quiz</button>
                 </div>
             </div>
-            
         </div>
 
         <div v-if="page==='results'">
-            <div>
+            <div class="flex items-center flex-col">
+                <div class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">
+                    <h1>Results</h1>
+                </div>
+
+                <div class="flex flex-col xl:flex-row">
+
+                        <div class="bg-myTwo rounded-xl p-4 m-5 w-full mb-auto">
+                            <div class="flex flex-col items-center">
+                                <h2 class="mb-3 text-2xl text-left">{{ quizData[0].question }}</h2>
+                                <p class="mb-3">&#10004; {{ reprove[0].correctAnswer }}</p>
+                                <p class="">{{ answerOne }}</p>
+                                <h1 class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">{{reprove[0].score }}/10</h1>
+                            </div>
+                        </div>
+
+                        <div class="bg-myTwo rounded-xl p-4 m-5 w-full mb-auto">
+                            <div class="flex flex-col items-center">
+                                <h2 class="mb-3 text-2xl text-left">{{ quizData[1].question }}</h2>
+                                <p class="mb-3 flex">&#10004; {{ reprove[1].correctAnswer }}</p>
+                                <p class="">{{ answerTwo }}</p>
+                                <h1 class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">{{reprove[1].score }}/10</h1>
+                            </div>
+                        </div>
+
+                        <div class="bg-myTwo rounded-xl p-4 m-5 w-full mb-auto">
+                            <div class="flex flex-col items-center">
+                                <h2 class="mb-3 text-2xl">{{ quizData[2].question }}</h2>
+                                <p class="mb-3">&#10004; {{ reprove[2].correctAnswer }}</p>
+                                <p class="">{{ answerThree }}</p>
+                                <h1 class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">{{reprove[2].score }}/10</h1>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25 mt-5" @click="page='home'">Done</button>
+                </div>
 
             </div>
-            <pre>{{ reprove }}</pre>
         </div>
     </div>
 </template>
@@ -131,7 +166,10 @@
                 } finally {
                     this.page = "results";
                 }
-                }
+                },
+            clearAnswers(){
+                console.log("answers cleared!")
+            }
         }
 
     }
