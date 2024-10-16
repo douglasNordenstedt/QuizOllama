@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25 mt-5" @click="page='home'">Done</button>
+                    <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25 mt-5" @click="redirect">Done</button>
                 </div>
 
             </div>
@@ -152,7 +152,6 @@
                     topic: this.topic
                 });
 
-                console.log(`api/gradeQuestions?${params.toString()}`)
                 try {
                     const response = await fetch (`api/gradeQuestions?${params.toString()}`)
                     if (!response.ok) {
@@ -168,6 +167,9 @@
                     console.log(this.page)
                 }
                 },
+            goHome(){
+                window.location.href="/"
+            }
         }
 
     }

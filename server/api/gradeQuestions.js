@@ -69,5 +69,5 @@ Third Question: "${answers.questionThree}", Student Answer: "${answers.answerThr
 
 Remember to only provide a valid JSON response. Do not include any additional text or explanations.
   `
-  return ollamaPrompt(initalPrompt);
+  return ollamaPrompt(chatGptPrompt);
 }
