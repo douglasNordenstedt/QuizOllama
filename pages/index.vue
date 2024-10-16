@@ -7,7 +7,7 @@
                     <h1 class="text-6xl italic text-myFour pt-10">Quiz Yourself With llama3.2</h1>
                     <div class="pt-12 flex flex-col sm:flex-row items-start">
                         <input type="text" v-model="topic" placeholder="Enter Topic" class="p-1 text-black rounded-xl mb-5" @keyup.enter="generateQuiz">
-                        <button class="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="generateQuiz">Generate Quiz</button>
+                        <button class="bg-myThree p-10 rounded-xl text-2xl shadow-2xl shadow-myThree/25 ml-0 sm:ml-10" @click="generateQuiz">Generate Quiz</button>
                     </div>
                 </div>
                 
@@ -17,7 +17,6 @@
                         <li>- Choose your own topic and generate a unique quiz</li>
                         <li>- Your answers will be graded and compared to how the AI answered</li>
                         <li>- Quality of questions might decline along with more niche topics</li>
-                        <li>- Topics including profanity will be rejected</li>
                     </ul>
                 </div>
             </div>
@@ -44,16 +43,16 @@
                     <h1>{{ this.topic }} Quiz</h1>
                 </div>
                 <div class="flex flex-col items-center">
-                    <h2 class="mb-3">{{ quizData[0].question }}</h2>
-                    <input type="text" v-model="answerOne" placeholder="" class="p-1 text-black rounded-xl mb-5">
+                    <h2 class="mb-3 text-center">{{ quizData[0].question }}</h2>
+                    <input type="text" v-model="answerOne" placeholder="" class="p-1 text-black rounded-xl mb-5" @keyup.enter="gradeQuiz">
                 </div>
                 <div class="flex flex-col items-center">
-                    <h2 class="mb-3">{{ quizData[1].question }}</h2>
-                    <input type="text" v-model="answerTwo" placeholder="" class="p-1 text-black rounded-xl mb-5">
+                    <h2 class="mb-3 text-center">{{ quizData[1].question }}</h2>
+                    <input type="text" v-model="answerTwo" placeholder="" class="p-1 text-black rounded-xl mb-5" @keyup.enter="gradeQuiz">
                 </div>
                 <div class="flex flex-col items-center">
-                    <h2 class="mb-3">{{ quizData[2].question }}</h2>
-                    <input type="text" v-model="answerThree" placeholder="" class="p-1 text-black rounded-xl mb-5">
+                    <h2 class="mb-3 text-center">{{ quizData[2].question }}</h2>
+                    <input type="text" v-model="answerThree" placeholder="" class="p-1 text-black rounded-xl mb-5" @keyup.enter="gradeQuiz">
                 </div>
                 <div class="flex flex-col items-center">
                 <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25" @click="gradeQuiz">Grade Quiz</button>
@@ -69,27 +68,27 @@
 
                 <div class="flex flex-col xl:flex-row">
 
-                        <div class="bg-myTwo rounded-xl p-4 m-5 w-full mb-auto">
+                        <div class="bg-myTwo rounded-xl p-4 w-full mb-5 xl:m-5">
                             <div class="flex flex-col items-center">
-                                <h2 class="mb-3 text-2xl text-left">{{ quizData[0].question }}</h2>
+                                <h2 class="mb-3 text-2xl text-center">{{ quizData[0].question }}</h2>
                                 <p class="mb-3">&#10004; {{ reprove[0].correctAnswer }}</p>
                                 <p class="">{{ answerOne }}</p>
                                 <h1 class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">{{reprove[0].score }}/10</h1>
                             </div>
                         </div>
 
-                        <div class="bg-myTwo rounded-xl p-4 m-5 w-full mb-auto">
+                        <div class="bg-myTwo rounded-xl p-4 w-full mb-5 xl:m-5">
                             <div class="flex flex-col items-center">
-                                <h2 class="mb-3 text-2xl text-left">{{ quizData[1].question }}</h2>
+                                <h2 class="mb-3 text-2xl text-center">{{ quizData[1].question }}</h2>
                                 <p class="mb-3 flex">&#10004; {{ reprove[1].correctAnswer }}</p>
                                 <p class="">{{ answerTwo }}</p>
                                 <h1 class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">{{reprove[1].score }}/10</h1>
                             </div>
                         </div>
 
-                        <div class="bg-myTwo rounded-xl p-4 m-5 w-full mb-auto">
+                        <div class="bg-myTwo rounded-xl p-4 w-full mb-5 xl:m-5">
                             <div class="flex flex-col items-center">
-                                <h2 class="mb-3 text-2xl">{{ quizData[2].question }}</h2>
+                                <h2 class="mb-3 text-2xl text-cener">{{ quizData[2].question }}</h2>
                                 <p class="mb-3">&#10004; {{ reprove[2].correctAnswer }}</p>
                                 <p class="">{{ answerThree }}</p>
                                 <h1 class="flex flex-col text-6xl text-myThree pt-10 pb-10 italic">{{reprove[2].score }}/10</h1>
@@ -117,7 +116,7 @@
                 answerOne: null,
                 answerTwo: null,
                 answerThree: null,
-                reprove: "",                
+                reprove: ""
             };
         },
         methods: {
@@ -149,7 +148,8 @@
                     questionThree: this.quizData[2].question,
                     answerOne: this.answerOne,
                     answerTwo: this.answerTwo,
-                    answerThree: this.answerThree
+                    answerThree: this.answerThree,
+                    topic: this.topic
                 });
 
                 console.log(`api/gradeQuestions?${params.toString()}`)
@@ -165,11 +165,9 @@
                     this.reprove = null;
                 } finally {
                     this.page = "results";
+                    console.log(this.page)
                 }
                 },
-            clearAnswers(){
-                console.log("answers cleared!")
-            }
         }
 
     }

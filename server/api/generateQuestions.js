@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
 export const generateQuestions = (topic) => {
   return ollamaPrompt(`
-    Generate 3 short questions regarding the topic "${topic}".
+    Generate 3 short and simple questions regarding the topic "${topic}".
     The questions should always have an answer.
     Only generate questions that you are confident you have the answer to.
     Answer in raw JSON ONLY.
