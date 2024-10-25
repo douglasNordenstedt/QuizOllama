@@ -1,5 +1,5 @@
 <template>
-  <div class="left-0 w-full bg-myTwo text-myFour p-4 flex justify-center items-center flex-col italic">
+  <div class="text-base left-0 w-full bg-myTwo text-myFour p-4 flex justify-center items-center flex-col italic">
     <div>
       <a href="https://github.com/douglasNordenstedt/QuizOllama" target="_blank">Source Code</a>
     </div>

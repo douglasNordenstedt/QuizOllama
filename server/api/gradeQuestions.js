@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
 });
 
 export const gradeQuestions = (answers) => {
-  
+
   const initalPrompt = `
     You will act as a teacher grading a students test.
     Here are the questions and what the student answered:
@@ -66,7 +66,7 @@ export const gradeQuestions = (answers) => {
   1. Use your knowledge to determine the correct answer to each question.
   2. Compare the student's answer to your correct answer and evaluate how close it is.
   3. Score the student's answer on a scale from 1-10. A score of:
-   - **10** means the student's answer is exactly correct or very close, allowing for minor spelling or grammar mistakes.
+   - **10** means the student's answer is exactly correct or very close, allowing for minor spelling or grammar mistakes in comparrison to the right answer.
    - **7-9** means the student's answer is mostly correct but might be missing some minor details or has some minor errors.
    - **4-6** means the student's answer is partially correct but lacks key information or has significant inaccuracies.
    - **1-3** means the answer is mostly incorrect or irrelevant to the question.
@@ -79,6 +79,7 @@ export const gradeQuestions = (answers) => {
 Your response must be a valid JSON object in the following format:
 [{"correctAnswer":"","score":""},{"correctAnswer":"","score":""},{"correctAnswer":"","score":""}]
 
+The topic of the quiz is "${answers.topic}"
 Here are the student's answers:
 First Question: "${answers.questionOne}", Student Answer: "${answers.answerOne}"
 Second Question: "${answers.questionTwo}", Student Answer: "${answers.answerTwo}"
@@ -86,5 +87,6 @@ Third Question: "${answers.questionThree}", Student Answer: "${answers.answerThr
 
 Remember to only provide a valid JSON response. Do not include any additional text or explanations.
   `
+  console.log(chatGptPrompt)
   return ollamaPrompt(chatGptPrompt);
 }
