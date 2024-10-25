@@ -1,16 +1,29 @@
 import { ollamaPrompt } from '~/components/ollama.js';
 
 export default defineEventHandler(async (event) => {
+
+  function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
   const query = getQuery(event);
   const { topic } = query;
 
-  if (!topic) {
-    return { error: 'Topic is required' };
+
+  let questions = await generateQuestions(topic);
+
+  if(isJsonString(questions)){
+    return JSON.parse(questions);
+  }else {
+    console.log('Failed to parse questions. Trying one more time.');
+    questions = await generateQuestions(topic);
+    return JSON.parse(questions);
   }
-
-  const questions = await generateQuestions(topic);
-
-  return JSON.parse(questions);
 });
 
 export const generateQuestions = (topic) => {
@@ -29,6 +42,7 @@ export const generateQuestions = (topic) => {
 - Ensure that each question has an easily identifiable, verifiable answer. If you are unsure about the answer, do not generate the question.
 - Questions should be simple and concise, appropriate for a quiz format, and easily gradable.
 - Avoid tricky wording or ambiguous phrasing. The questions should require factual or straightforward answers.
+- Do not generate multiple choice questions.
 
 The response must be in valid JSON format as follows:
 [{"question":""},{"question":""},{"question":""}]

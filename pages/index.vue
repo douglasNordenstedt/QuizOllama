@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25 mt-5" @click="redirect">Done</button>
+                    <button class ="bg-myThree p-10 rounded-xl ml-10 text-2xl shadow-2xl shadow-myThree/25 mt-5" @click="goHome">Done</button>
                 </div>
 
             </div>
@@ -125,9 +125,10 @@
                 this.page = "loading";
                 
                 try {
-                    // Make an API call to the server-side route
                     const response = await fetch(`/api/generateQuestions?topic=${this.topic}`);
                     if (!response.ok) {
+                        alert("Failed to generate questions");
+                        this.goHome()
                         throw new Error('Failed to generate questions');
                     }
                     const data = await response.json();
@@ -155,6 +156,8 @@
                 try {
                     const response = await fetch (`api/gradeQuestions?${params.toString()}`)
                     if (!response.ok) {
+                        alert("Failed to grade questions");
+                        this.goHome()
                         throw new Error('Failed to grade questions');
                     }
                     const data = await response.json();

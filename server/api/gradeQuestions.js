@@ -3,13 +3,30 @@
 import { ollamaPrompt } from '~/components/ollama.js';
 
 export default defineEventHandler(async (event) => {
-  const answers = getQuery(event);  
-  const questions = await gradeQuestions(answers);
 
-  return JSON.parse(questions);
+  function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+  const answers = getQuery(event);  
+  let gradedQuestions = await gradeQuestions(answers);
+
+  if(isJsonString(gradedQuestions)){
+    return JSON.parse(gradedQuestions)
+  }else {
+    console.log('Failed to parse answers, Trying one more time');
+    gradedQuestions = await gradeQuestions(answers);
+    return JSON.parse(questions);
+  }
 });
 
 export const gradeQuestions = (answers) => {
+  
   const initalPrompt = `
     You will act as a teacher grading a students test.
     Here are the questions and what the student answered:
@@ -53,7 +70,7 @@ export const gradeQuestions = (answers) => {
    - **7-9** means the student's answer is mostly correct but might be missing some minor details or has some minor errors.
    - **4-6** means the student's answer is partially correct but lacks key information or has significant inaccuracies.
    - **1-3** means the answer is mostly incorrect or irrelevant to the question.
-  4. If the student’s answer is close in meaning but has small inaccuracies, provide a higher score (7+), but if the answer misses critical information, reduce the score accordingly.
+  4. If the students answer is close in meaning but has small inaccuracies, provide a higher score (7+), but if the answer misses critical information, reduce the score accordingly.
   5. Be forgiving when it comes to minor spelling or grammar errors. Focus primarily on the meaning of the answer.
   6. Respond with a JSON object containing two parameters per question:
    - 'correctAnswer': This is how you would answer the question correctly.
