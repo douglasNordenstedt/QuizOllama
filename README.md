@@ -4,4 +4,4 @@
 &check; Single page application ⚡\
 &check; Responsive design 📱\
 &check; Nuxt3 🌿\
-&check; Tailwind css 🌊\
+&check; Tailwind css 🌊
